@@ -18,7 +18,7 @@ app.secret_key = secrets.token_hex(16)
 
 # Configure Google Generative AI
 warnings.filterwarnings('ignore')
-GOOGLE_API_KEY = "AIzaSyDqyJ-_VWJmBsKfqjlKzMgQuc5DI6ZfCfk"
+GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY')
 genai.configure(api_key=GOOGLE_API_KEY)
 
 def generate_response(prompt):
