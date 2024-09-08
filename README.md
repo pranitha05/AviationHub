@@ -11,9 +11,6 @@
 - **Flying Schools**: A directory of flying schools organized by country.
 - **Pilot Contacts**: A network of contacts in the aviation industry.
 
-## Demo
-
-You can explore the AviationHub project at: [AviationHub](https://aviationhub.svig.in/)
 
 ## Installation
 
