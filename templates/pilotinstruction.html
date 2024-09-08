@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Become a Pilot - AviationHub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Arial&display=swap" rel="stylesheet">
+    <style>
+       body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: white;
+            background-image: url('/static/pilotbg.webp'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: #333;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: none;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+            background-image: linear-gradient(to right, #FFDFD6, #E3A5C7, #B692C2, #694F8E);
+            -webkit-background-clip: text;
+            color: transparent;
+            z-index: 10;
+        }
+
+        .menu-button {
+            font-size: 30px;
+            padding: 10px 20px;
+            background-image: linear-gradient(to right, #FFDFD6, #E3A5C7, #B692C2, #694F8E);
+            -webkit-background-clip: text;
+            color: transparent;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            right: 30px;
+        }
+
+        .menu-content {
+            display: none;
+            position: absolute;
+            top: 80px;
+            right: 60px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            z-index: 1000;
+            background: linear-gradient(to right, #FFDFD6, #E3A5C7, #B692C2, #694F8E);
+        }
+
+        .menu-content a {
+            display: block;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .menu-content a:hover {
+            background-color: #E3A5C7;
+        }
+
+        main {
+            padding-top: 120px;
+            padding: 20px;
+            margin: 80px 20px 20px; /* Adjusted to ensure content does not overlap header */
+            background-color: rgb(198, 137, 198);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        h1, h2 {
+            color: black;
+        }
+
+        p, ul {
+            color: white;
+            line-height: 1.6;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        a {
+            color: #4a69bd;
+            text-decoration: none;
+        }
+
+      
+
+        footer {
+            background: linear-gradient(to right, #FFDFD6, #E3A5C7, #B692C2, #694F8E);
+            color: #fff;
+            text-align: center;
+            padding: 10px 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        footer a {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        
+        .title {
+            font-size: 30px;
+            font-weight: bold;
+            color: black;
+            text-align: center;
+            width: 100%;
+            padding: 20px 0; /* Padding on top and bottom */
+             /* Background color to match the header */
+            position: relative; /* Ensuring it doesn't overlap */
+            top: 100px; /* Adjust based on your header's height */
+            z-index: 500; /* Lower than header but above other contents */
+            margin: 0 auto; /* Ensures it stays centered */
+            /* Optional: adds depth */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="/homepage" class="logo">AVIATIONHUB</a>
+        <button class="menu-button" onmouseover="toggleMenu()" onmouseout="toggleMenu()">☰</button>
+        <div class="menu-content" id="menuContent" onmouseover="toggleMenu()" onmouseout="toggleMenu()">
+            <a href="/dgcaresource">DGCA Resources</a>
+            <a href="/flightsimulator">Flight Simulator</a>
+            <a href="/aichatbot">AI Chatbot</a>
+            <a href="/pilotcontact">Pilot Contacts</a>
+            <a href="/flyingschool">Flying Schools</a>
+            <a href="/about">About Us</a>
+            <a href="/contact">Contact Us</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </header>
+    <div class="title">How To Become A Pilot</div>
+    <main>
+        <h2>Step 1: Basic Requirements</h2>
+        <p>To begin your pilot training, you need to meet several basic requirements:</p>
+        <ul>
+            <li><strong>Educational Requirements:</strong> Minimum secondary education (10+2), with Physics and Mathematics.</li>
+            <li><strong>Medical Fitness:</strong> Obtain a Class 1 Medical Certificate, verifying that you meet health standards for flying.</li>
+            <li><strong>Age Requirements:</strong> You must be at least 17 years old to start training for a Student Pilot License and 18 years old for a Commercial Pilot License.</li>
+            <li><strong>Legal Requirements:</strong> Pass a background check to ensure you have no serious criminal offenses that could disqualify you from flying.</li>
+            <li><strong>Language Proficiency:</strong> Proficiency in English is crucial for communication in all aspects of aviation.</li>
+        </ul>
+
+        <h2>Step 2: Ground School Training</h2>
+        <p>Acquire theoretical knowledge necessary for flying. Enroll in a <a href="/flyingschool">flying school</a> that offers ground school to prepare for DGCA exams.</p>
+
+        <h2>Step 3: DGCA Exams</h2>
+        <p>Pass the DGCA written exams. Check our <a href="/dgcaresource">DGCA resources</a> page for study materials and tips.</p>
+
+        <h2>Step 4: Flight Training</h2>
+        <p>Accumulate the required flight hours under the supervision of a certified flight instructor.</p>
+
+        <h2>Step 5: Advanced Ratings</h2>
+        <p>Obtain additional ratings such as Instrument Rating or Multi-Engine Rating to enhance your skills and employability.</p>
+
+        <h2>Step 6: Continuous Education</h2>
+        <p>Keep up with ongoing learning and stay updated with new technologies and regulations in aviation.</p>
+
+        <h2>Step 7: Networking</h2>
+        <p>Networking is key in aviation. Connect with professionals through our <a href="/pilotcontact">pilot contacts</a> page for mentorship and career opportunities.</p>
+    </main>
+    <footer>
+        For any feedback or queries contact <a href="mailto:contactaviationhub@gmail.com">contactaviationhub@gmail.com</a>
+    </footer>
+    <script>
+        function toggleMenu() {
+            var menuContent = document.getElementById('menuContent');
+            if (menuContent.style.display === 'block') {
+                menuContent.style.display = 'none';
+            } else {
+                menuContent.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>

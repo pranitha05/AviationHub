@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AviationHub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: white;
+            background-image: url('/static/pilotbg.webp'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: #333;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: none;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+            background-image: linear-gradient(to right, #FFDFD6, #E3A5C7, #B692C2, #694F8E);
+            -webkit-background-clip: text;
+            color: transparent;
+            z-index: 10;
+        }
+
+        .menu-button {
+            font-size: 30px;
+            padding: 10px 20px;
+            background-image: linear-gradient(to right, #FFDFD6, #E3A5C7, #B692C2, #694F8E);
+            -webkit-background-clip: text;
+            color: transparent;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            right: 30px;
+        }
+
+        .menu-content {
+            display: none;
+            position: absolute;
+            top: 80px;
+            right: 60px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            z-index: 1000;
+            background: linear-gradient(to right, #FFDFD6, #E3A5C7, #B692C2, #694F8E);
+        }
+
+        .menu-content a {
+            display: block;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .menu-content a:hover {
+            background-color: #E3A5C7;
+        }
+
+        .main-content {
+            text-align: center;
+            padding: 100px 20px 20px;
+            color: black;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .main-content h1 {
+            font-size: 13.9px;
+            color: black;
+            margin: 0;
+            text-align: left;
+            margin-right: 550px;
+        }
+
+        .main-content h2 {
+            font-size: 106px;
+            color: black;
+            margin: 0;
+            background-image: linear-gradient(to right, #FFDFD6, #E3A5C7, #B692C2, #694F8E);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .features {
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .features h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: black;
+        }
+
+        .feature-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .feature-box {
+            background: linear-gradient(to right, #FFDFD6, #E3A5C7, #B692C2, #694F8E);
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s;
+            color: #fff;
+            flex: 1 1 150px;
+            max-width: 200px;
+        }
+
+        .feature-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-box img {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 10px;
+        }
+
+        footer {
+            background: linear-gradient(to right, #FFDFD6, #E3A5C7, #B692C2, #694F8E);
+            color: #fff;
+            text-align: center;
+            padding: 10px 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        footer a {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .menu-button {
+                font-size: 24px;
+                padding: 8px 16px;
+            }
+
+            .menu-content {
+                top: 50px;
+                right: 10px;
+                width: 200px;
+            }
+
+            .main-content h1 {
+                font-size: 10px;
+                margin-right: 0;
+                text-align: center;
+            }
+
+            .main-content h2 {
+                font-size: 60px;
+            }
+
+            .features h2 {
+                font-size: 18px;
+            }
+
+            .feature-box {
+                flex: 1 1 100px;
+                max-width: 150px;
+            }
+
+            .feature-box img {
+                width: 30px;
+                height: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 15px;
+            }
+
+            .logo {
+                font-size: 18px;
+            }
+
+            .menu-button {
+                font-size: 20px;
+                padding: 6px 12px;
+            }
+
+            .menu-content {
+                top: 40px;
+                right: 0;
+                width: 180px;
+            }
+
+            .main-content h1 {
+                font-size: 8px;
+            }
+
+            .main-content h2 {
+                font-size: 50px;
+            }
+
+            .features h2 {
+                font-size: 16px;
+            }
+
+            .feature-box {
+                flex: 1 1 80px;
+                max-width: 120px;
+            }
+
+            .feature-box img {
+                width: 25px;
+                height: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="/homepage" class="logo">AVIATIONHUB</a>
+        <button class="menu-button" onmouseover="toggleMenu()" onmouseout="toggleMenu()">☰</button>
+        <div class="menu-content" id="menuContent" onmouseover="toggleMenu()" onmouseout="toggleMenu()">
+            <a href="/pilotinstruction">How To Become A Pilot</a>
+            <a href="/dgcaresource">DGCA Resources</a>
+            <a href="/flightsimulator">Flight Simulator</a>
+            <a href="/aichatbot">AI Chatbot</a>
+            <a href="/pilotcontact">Pilot Contacts</a>
+            <a href="/flyingschool">Flying Schools</a>
+            <a href="/about">About Us</a>
+            <a href="/contact">Contact Us</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </header>
+    <div class="main-content">
+        <h1>WELCOME TO</h1>
+        <h2>AVIATIONHUB</h2>
+        <p>Your go-to expert pilot advice and essential aviation resources, tailored for aspiring pilot enthusiasts.</p>
+    </div>
+    <div class="features">
+        <h2>Explore Our Key Features</h2>
+        <div class="feature-grid">
+            <div class="feature-box" onclick="logFeatureSelection('How To Become A Pilot'); location.href='/pilotinstruction';">
+                <img src="/static/icons8-pilot-60.png" alt="How To Become A Pilot">
+                <h3>How To Become A Pilot</h3>
+                <p>Start your journey towards becoming a pilot with our step-by-step guide.</p>
+            </div>
+            <div class="feature-box" onclick="logFeatureSelection('DGCA Resources'); location.href='/dgcaresource';">
+                <img src="https://img.icons8.com/ios-filled/50/ffffff/airplane-take-off.png" alt="DGCA Resources">
+                <h3>DGCA Resources</h3>
+                <p>Access all the necessary resources for DGCA exams and certifications</p>
+            </div>
+            <div class="feature-box" onclick="logFeatureSelection('Flight Simulator'); location.href='/flightsimulator';">
+                <img src="https://img.icons8.com/ios-filled/50/ffffff/flight-simulator.png" alt="Flight Simulator">
+                <h3>Flight Simulator</h3>
+                <p>Experience realistic flight simulation to enhance your skills and practice</p>
+            </div>
+            <div class="feature-box" onclick="logFeatureSelection('Flying Schools'); location.href='/flyingschool';">
+                <img src="https://img.icons8.com/ios-filled/50/ffffff/school.png" alt="Flying Schools">
+                <h3>Flying Schools</h3>
+                <p>Find flying schools based on your city with our comprehensive list</p>
+            </div>
+            <div class="feature-box" onclick="logFeatureSelection('AI Chatbot'); location.href='/aichatbot';">
+                <img src="https://img.icons8.com/ios-filled/50/ffffff/robot-2.png" alt="AI Chatbot">
+                <h3>AI Chatbot</h3>
+                <p>Get answers to your aviation-related queries instantly with our AI chatbot</p>
+            </div>
+            <div class="feature-box" onclick="logFeatureSelection('Pilot Contacts'); location.href='/pilotcontact';">
+                <img src="https://img.icons8.com/ios-filled/50/ffffff/speech-bubble.png" alt="Pilot Contacts">
+                <h3>Pilot Contacts</h3>
+                <p>Connect with experienced and student pilots for valuable insights and networking</p>
+            </div>
+        </div>
+    </div>
+    <footer>
+        For any feedback or queries contact <a href="mailto:contactaviationhub@gmail.com">contactaviationhub@gmail.com</a>
+    </footer>
+    <script>
+        function toggleMenu() {
+            var menuContent = document.getElementById('menuContent');
+            if (menuContent.style.display === 'block') {
+                menuContent.style.display = 'none';
+            } else {
+                menuContent.style.display = 'block';
+            }
+        }
+        function logFeatureSelection(feature) {
+            console.log('Feature Selected: ' + feature);
+        }
+    </script>
+</body>
+</html>

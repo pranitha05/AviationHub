@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AviationHub</title>
+    <style>
+        /* Your existing styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0f103f;
+            color: #fff;
+            overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+            background-image: url('/static/pilotbg.webp');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background-color: black;
+            opacity: 0.55;
+            z-index: 1;
+        }
+
+        .container {
+            position: relative;
+            text-align: center;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+            background-image: linear-gradient(to right, #f59e0b, #ec4899, #8b5cf6);
+            -webkit-background-clip: text;
+            color: transparent;
+            z-index: 10;
+            position: relative;
+        }
+
+        .welcome-text {
+            font-size: 13.9px;
+            font-weight: bold;
+            background-image: linear-gradient(to right, #f59e0b, #ec4899, #8b5cf6);
+            -webkit-background-clip: text;
+            color: transparent;
+            text-transform: uppercase;
+            z-index: 10;
+            position: absolute;
+            top: 20px;
+            left: 30px;
+        }
+
+        .main-title {
+            font-size: 106px;
+            font-weight: bold;
+            background-image: linear-gradient(to right, #f59e0b, #ec4899, #8b5cf6);
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 20px;
+            z-index: 10;
+            position: relative;
+        }
+
+        .sub-title {
+            font-size: 16px;
+            font-weight: bold;
+            background-image: linear-gradient(to right, #f59e0b, #ec4899, #8b5cf6);
+            -webkit-background-clip: text;
+            color: transparent;
+            text-transform: uppercase;
+            margin-top: 10px;
+            margin-left: 500px;
+            z-index: 10;
+            position: relative;
+            text-align: center;
+        }
+
+        .cta-button {
+            background-image: linear-gradient(to right, #9333ea, #2563eb);
+            color: #fff;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-family: 'Poppins', sans-serif;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: opacity 0.3s, transform 0.3s;
+            margin-top: 30px;
+            z-index: 10;
+            position: relative;
+        }
+
+        .cta-button:hover {
+            opacity: 0.8;
+            transform: translateY(-3px);
+        }
+
+        header {
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: calc(100% - 60px);
+        }
+
+        .menu-button {
+            background-image: linear-gradient(to right, #9333ea, #2563eb);
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .menu-button:hover {
+            opacity: 0.8;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+            color: #fff;
+            font-size: 16px;
+            z-index: 10;
+        }
+
+        footer a {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 48px;
+            }
+
+            .sub-title {
+                font-size: 24px;
+            }
+
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .welcome-text {
+                font-size: 10px;
+                top: 10px;
+                left: 20px;
+            }
+
+            .sub-title {
+                font-size: 14px;
+                top: 10px;
+                right: 20px;
+                margin-top: 10px;
+                text-align: center;
+            }
+        }
+    </style>
+    <!-- Firebase SDKs as modules -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.6/firebase-app.js';
+        import { getAuth, GoogleAuthProvider, signInWithPopup } from 'https://www.gstatic.com/firebasejs/9.6.6/firebase-auth.js';
+
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCzQfACyAZNt_zN_S4FSi2kXCIhbLWoDnw",
+            authDomain: "aviationhub-53bb8.firebaseapp.com",
+            projectId: "aviationhub-53bb8",
+            storageBucket: "aviationhub-53bb8",
+            messagingSenderId: "609265126096",
+            appId: "1:609265126096:web:e82a19bc5d55dd7a4a2cd5",
+            measurementId: "G-4STR4BXR7Y"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        // Add event listeners to buttons
+        document.addEventListener('DOMContentLoaded', () => {
+            const signInButton = document.getElementById('sign-in-button');
+            const ctaButton = document.getElementById('cta-button');
+
+            signInButton.addEventListener('click', () => {
+                const provider = new GoogleAuthProvider();
+                signInWithPopup(auth, provider)
+                    .then((result) => {
+                        // User signed in
+                        window.location.href = '/homepage';
+                    })
+                    .catch((error) => {
+                        console.error('Error signing in:', error);
+                    });
+            });
+
+            ctaButton.addEventListener('click', () => {
+                const provider = new GoogleAuthProvider();
+                signInWithPopup(auth, provider)
+                    .then((result) => {
+                        // User signed in
+                        window.location.href = '/homepage';
+                    })
+                    .catch((error) => {
+                        console.error('Error signing in:', error);
+                    });
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <a href="/" class="logo">AviationHub</a>
+        <button id="sign-in-button" class="menu-button">Sign In</button>
+    </header>
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="welcome-text">Welcome to</div>
+        <h1 class="main-title">AviationHub</h1>
+        <p class="sub-title">Your Ultimate<br>Pilot Resource</p>
+        <a href="#" id="cta-button" class="cta-button">Experience What We Have!</a>
+    </div>
+    <footer>
+        For any feedback or queries contact <a href="mailto:contactaviationhub@gmail.com">contactaviationhub@gmail.com</a>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flying Schools - AviationHub</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: white;
+            background-image: url('/static/pilotbg.webp'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: #333;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: none;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+            background-image: linear-gradient(to right, #FFDFD6, #E3A5C7, #B692C2, #694F8E);
+            -webkit-background-clip: text;
+            color: transparent;
+            z-index: 10;
+        }
+
+        .menu-button {
+            font-size: 30px;
+            padding: 10px 20px;
+            background-image: linear-gradient(to right, #FFDFD6, #E3A5C7, #B692C2, #694F8E);
+            -webkit-background-clip: text;
+            color: transparent;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            right: 30px;
+        }
+
+        .menu-content {
+            display: none;
+            position: absolute;
+            top: 80px;
+            right: 60px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            z-index: 1000;
+            background: linear-gradient(to right, #FFDFD6, #E3A5C7, #B692C2, #694F8E);
+        }
+
+        .menu-content a {
+            display: block;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .menu-content a:hover {
+            background-color: #E3A5C7;
+        }
+
+        .menu-button:hover + .menu-content,
+.menu-content:hover {
+    display: block; /* Show the menu when hovering over the button or menu content */
+}
+
+
+        .container {
+            max-width: 800px;
+            margin: 140px auto 0;  /* Adjusted margin to account for fixed header */
+            padding: 20px;
+            background-color: rgb(198, 137, 198);  /* White background for content container */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .school-box {
+            background-color: #f0f0f0;  /* Light grey background for each school box */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .school-box h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .school-box p {
+            margin-bottom: 10px;
+        }
+
+        .visit-button {
+            padding: 8px 16px;
+            background-color: #fd6f9d;  /* Blue background for buttons */
+            color: #fff;  /* White text for contrast */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s;  /* Smooth transition for hover effect */
+        }
+
+        .visit-button:hover {
+            background-color: #fd6f9d;  /* Darker blue on hover */
+        }
+
+        footer {
+            background: linear-gradient(to right, #FFDFD6, #E3A5C7, #B692C2, #694F8E);
+            color: #fff;
+            text-align: center;
+            padding: 10px 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        footer a {
+            color: #fff;
+            text-decoration: underline;
+        }
+        .form-group label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group .location-dropdown {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc; /* Restores border around the dropdown */
+    border-radius: 5px; /* Rounded corners for the dropdown */
+    box-shadow: none; /* Removes any shadow effects */
+}
+
+.button-container {
+    text-align: center;
+    margin-top: 20px; /* Ensures spacing above the button */
+}
+
+.button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #fd6f9d; /* Primary button color */
+    color: #fff; /* Text color for the button */
+    cursor: pointer;
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+    font-size: 16px;
+    text-decoration: none;
+    display: inline-block; /* Ensures the button is in line */
+}
+
+.button:hover {
+    background-color: #d35bbb; /* Darker blue on hover */
+}
+
+
+        @media (max-width: 768px) {
+            header, .container {
+                padding: 10px 15px;
+            }
+
+            .menu-button {
+                padding: 5px 10px;  /* Smaller padding for mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="/homepage" class="logo">AVIATIONHUB</a>
+        <button class="menu-button" onmouseover="toggleMenu()" onmouseout="toggleMenu()">☰</button>
+        <div class="menu-content" id="menuContent" onmouseover="toggleMenu()" onmouseout="toggleMenu()">
+            <a href="/pilotinstruction">How To Become A Pilot</a>
+            <a href="/dgcaresource">DGCA Resources</a>
+            <a href="/flightsimulator">Flight Simulator</a>
+            <a href="/aichatbot">AI Chatbot</a>
+            <a href="/pilotcontact">Pilot Contacts</a>
+            <a href="/about">About Us</a>
+            <a href="/contact">Contact Us</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </header>
+    <div class="container">
+        <h2>Find Flying Schools</h2>
+        <div class="form-group">
+            <label for="place">Select Location:</label>
+            <select id="place" class="location-dropdown">
+                <option value="">Select a location</option>
+                <option value="CANADA">Canada</option>
+                <option value="FRANCE">France</option>
+                <option value="INDIA">India</option>
+                <option value="NETHERLANDS">Netherlands</option>
+                <option value="NEWZELAND">New Zealand</option>
+                <option value="SINGAPORE">Singapore</option>
+                <option value="SOUTH AFRICA">South Africa</option>
+                <option value="SPAIN">Spain</option>
+                <option value="SRILANKA">Sri Lanka</option>
+                <option value="UK">UK</option>
+                <option value="USA">USA</option>
+            </select>
+        </div>
+        <div class="button-container">
+            <button class="button" onclick="filterSchools()">Search Schools</button>
+        </div>
+        <div id="schoolList">
+            <!-- Schools will be dynamically populated here -->
+        </div>
+    </div>
+    <footer>
+        For any feedback or queries contact <a href="mailto:contactaviationhub@gmail.com">contactaviationhub@gmail.com</a>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            var menuContent = document.getElementById('menuContent');
+            if (menuContent.style.display === 'block') {
+                menuContent.style.display = 'none';
+            } else {
+                menuContent.style.display = 'block';
+            }
+        }
+
+        function filterSchools() {
+            // Fetch selected location
+            const selectedPlace = document.getElementById('place').value;
+
+            // Simulate fetching schools (replace with actual data fetching)
+            const schools = [
+    // USA
+    { name: "ATP Flight School", location: "USA", website: "https://atpflightschool.com" },
+    { name: "Paragon Flight School", location: "USA", website: "https://paragonflight.com" },
+    { name: "Epic Flight Academy", location: "USA", website: "https://epicflightacademy.com" },
+    { name: "University of North Dakota", location: "USA", website: "https://aero.und.edu" },
+    { name: "Phoenix East Aviation", location: "USA", website: "https://phoenixeastaviation.com" },
+
+    // Canada
+    { name: "Canada Aviation Academy", location: "Canada", website: "https://canadaaviationacademy.com" },
+    { name: "Seneca College School of Aviation", location: "Canada", website: "https://senecacollege.ca" },
+    { name: "Winnipeg Aviation", location: "Canada", website: "https://winnipegaviation.com" },
+    { name: "Confederation College School of Aviation", location: "Canada", website: "https://confederationcollege.ca" },
+    { name: "Tillsonburg Aviation Flying School", location: "Canada", website: "https://tillsonburgaviation.com" },
+
+    // France
+    { name: "ENAC (École Nationale de l'Aviation Civile)", location: "France", website: "https://enac.fr" },
+    { name: "AeroAFFAIRES Aero Academy", location: "France", website: "https://aeroaffaires.com" },
+    { name: "Astonfly", location: "France", website: "https://astonfly.com" },
+    { name: "Air Formation", location: "France", website: "https://airformation.com" },
+    { name: "Fly Academy Lognes", location: "France", website: "https://flyacademylognes.com" },
+
+    // India
+    { name: "Indira Gandhi Rashtriya Uran Akademi (IGRUA)", location: "India", website: "https://igrua.gov.in" },
+    { name: "National Flying Training Academy (NFTI)", location: "India", website: "https://nfti.in" },
+    { name: "CAE Oxford Aviation Academy India", location: "India", website: "https://cae.com" },
+    { name: "The Bombay Flying Club", location: "India", website: "https://bombayflyingclub.com" },
+    { name: "Madras Flying Club", location: "India", website: "https://madrasflyingclub.in" },
+    { name: "Flytech Aviation Academy", location: "India", website: "https://flytechaviation.aero" },
+
+    // Netherlands
+    { name: "Netherlands Flight Academy", location: "Netherlands", website: "https://nfa.nl" },
+    { name: "CAE Groningen Airport Flight School", location: "Netherlands", website: "https://cae.com" },
+    { name: "Amsterdam School of Aviation", location: "Netherlands", website: "https://amsterdamaviation.nl" },
+    { name: "FAI Aviation Academy", location: "Netherlands", website: "https://fai-aviation.com" },
+    { name: "Dutch Flying School Lelystad", location: "Netherlands", website: "https://dutchflyingschool.nl" },
+    { name: "Aeroclub Rotterdam", location: "Netherlands", website: "https://aeroclubrotterdam.nl" },
+
+    // New Zealand
+    { name: "Air New Zealand Flight Training", location: "New Zealand", website: "https://airnz.co.nz" },
+    { name: "Catoctin Aviation", location: "New Zealand", website: "https://catoctinaviation.co.nz" },
+    { name: "New Zealand Aviation College", location: "New Zealand", website: "https://nzac.co.nz" },
+    { name: "Southern Wings Flight School", location: "New Zealand", website: "https://southernwings.co.nz" },
+    { name: "Parakai Aviation", location: "New Zealand", website: "https://parakaiaviation.co.nz" },
+    { name: "Whangarei Aero Club", location: "New Zealand", website: "https://whangareiaeroclub.co.nz" },
+
+    // Singapore
+    { name: "Singapore Flying College", location: "Singapore", website: "https://singaporeflyingcollege.sg" },
+    { name: "CAAS Flight Training School", location: "Singapore", website: "https://caas.gov.sg" },
+    { name: "Aero Edge Flight Training", location: "Singapore", website: "https://aeroedge.com.sg" },
+
+    // South Africa
+    { name: "43 Air School", location: "South Africa", website: "https://43airschool.com" },
+    { name: "CA SimuFlite South Africa", location: "South Africa", website: "https://casimuflite.co.za" },
+    { name: "The Civil Aviation Authority (CAA) Training Centre", location: "South Africa", website: "https://caa.co.za" },
+    { name: "Commercial Aviation Training Organisation (CATO)", location: "South Africa", website: "https://cato.co.za" },
+    { name: "FTA Aviation", location: "South Africa", website: "https://ftaaviation.co.za" },
+    { name: "National Flying School of South Africa", location: "South Africa", website: "https://nfs.co.za" },
+
+    // Spain
+    { name: "European Flight Academy", location: "Spain", website: "https://europeanflightacademy.com" },
+    { name: "Gestorair Flight Academy", location: "Spain", website: "https://gestorair.com" },
+    { name: "Academia COA", location: "Spain", website: "https://academia-coa.com" },
+    { name: "Aeroclub Barcelona", location: "Spain", website: "https://aeroclub-barcelona.com" },
+    { name: "Spanish Flying School", location: "Spain", website: "https://spanishflyingschool.com" },
+    { name: "FlyBy Spain", location: "Spain", website: "https://flybyspain.com" },
+
+    // Sri Lanka
+    { name: "Sri Lanka Air Force Flying School", location: "Sri Lanka", website: "https://airforce.lk" },
+    { name: "The Colombo Flying Club", location: "Sri Lanka", website: "https://colomboflyingclub.lk" },
+    { name: "Sky Aviation", location: "Sri Lanka", website: "https://skyaviation.lk" },
+    { name: "Lanka Private Pilots Academy", location: "Sri Lanka", website: "https://lppacademy.lk" },
+    { name: "Asian Academy of Aeronautics", location: "Sri Lanka", website: "https://aaa.lk" },
+    { name: "Citrus Air Training", location: "Sri Lanka", website: "https://citrusairtraining.lk" },
+
+    // UK
+    { name: "The National Flying School (NFS)", location: "UK", website: "https://nationalflyingschool.co.uk" },
+    { name: "CAA Approved ATO - FTEJerez", location: "UK", website: "https://ftejerez.com" },
+    { name: "Cabair Flight Training Academy", location: "UK", website: "https://cabair.co.uk" },
+    { name: "Oxford Aviation Academy (OAA)", location: "UK", website: "https://cae.com" }
+];
+
+
+
+            // Filter schools based on selected criteria
+            const filteredSchools = schools.filter(school => school.location.toUpperCase() === selectedPlace.toUpperCase());
+
+            // Display filtered schools
+            displaySchools(filteredSchools);
+        }
+
+        function displaySchools(schools) {
+            const schoolList = document.getElementById('schoolList');
+            schoolList.innerHTML = ""; // Clear previous results
+
+            if (schools.length === 0) {
+                schoolList.innerHTML = "<p>No schools found.</p>";
+                return;
+            }
+
+            schools.forEach(school => {
+                const schoolBox = document.createElement('div');
+                schoolBox.classList.add('school-box');
+
+                const schoolInfo = `
+                    <h3>${school.name}</h3>
+                    <p><strong>Location:</strong> ${school.location}</p>
+                    <a href="${school.website}" class="visit-button" target="_blank">Visit Website</a>
+                `;
+
+                schoolBox.innerHTML = schoolInfo;
+                schoolList.appendChild(schoolBox);
+            });
+        }
+    </script>
+</body>
+</html>

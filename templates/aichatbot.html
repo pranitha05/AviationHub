@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aviation Chatbot</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: white;
+            background-image: url('/static/pilotbg.webp'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: #333;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: none;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+            background-image: linear-gradient(to right, #FFDFD6, #E3A5C7, #B692C2, #694F8E);
+            -webkit-background-clip: text;
+            color: transparent;
+            z-index: 10;
+        }
+
+        .menu-button {
+            font-size: 30px;
+            padding: 10px 20px;
+            background-image: linear-gradient(to right, #FFDFD6, #E3A5C7, #B692C2, #694F8E);
+            -webkit-background-clip: text;
+            color: transparent;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            right: 30px;
+        }
+
+        .menu-content {
+            display: none;
+            position: absolute;
+            top: 80px;
+            right: 60px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            z-index: 1000;
+            background: linear-gradient(to right, #FFDFD6, #E3A5C7, #B692C2, #694F8E);
+        }
+
+        .menu-content a {
+            display: block;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .menu-content a:hover {
+            background-color: #E3A5C7;
+        }
+
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            color: black;
+            text-align: center;
+            width: 100%;
+            padding: 20px 0; /* Padding on top and bottom */
+            position: relative; /* To stay below the fixed header */
+            top: 50px; /* Adjust based on your header's height */
+            z-index: 500; /* Lower than header but above other contents */
+        }
+
+/* Hover effect to display the menu */
+        .menu-button:hover + .menu-content,
+        .menu-content:hover {
+            display: block;
+        }
+
+        #container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(198, 137, 198);  /* White background for the chat container */
+            width: 90%;
+            height: 80vh;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);  /* Soft shadow for 3D effect */
+            overflow: hidden;
+            margin-top: 60px;  /* Adjusted margin to accommodate the header */
+            margin-left: 150px;
+        }
+
+        .chat {
+            overflow-y: auto;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column-reverse;
+            width: 100%;
+            padding: 10px;
+        }
+
+        .chat-message {
+            margin-bottom: 12px;
+            display: flex;
+        }
+
+        .user-message {
+            background-color: rgba(146,112,155,255);
+            color: #fff;  /* White text for readability */
+            padding: 8px 12px;
+            border-radius: 20px;
+            margin-left: auto;
+            max-width: 80%;
+        }
+
+        .bot-message {
+            background-color: #a88198;  
+            color: white;  /* Darker text for contrast */
+            padding: 8px 12px;
+            border-radius: 20px;
+            margin-right: auto;
+            max-width: 80%;
+        }
+
+        .input-area {
+            border-top: 1px solid #ccc;  /* Light border for separation */
+            padding: 10px;
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+
+        input[type="text"] {
+            flex-grow: 1;
+            padding: 8px;
+            border: none;
+            border-radius: 20px;
+            margin-right: 10px;
+            font-size: 14px;
+            max-width: 80%;
+        }
+
+        button {
+            padding: 8px 12px;
+            background-color: #007bff;  /* Consistent button color */
+            color: #fff;  /* White text */
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+
+        footer {
+            background: linear-gradient(to right, #FFDFD6, #E3A5C7, #B692C2, #694F8E);
+            color: #fff;
+            text-align: center;
+            padding: 10px 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        footer a {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        @media (min-width: 600px) {
+            header {
+                padding: 20px 30px;
+            }
+
+            .logo {
+                font-size: 24px;
+            }
+
+            #container {
+                width: 80%;
+                height: 70vh;
+                margin-top: 60px; /* Space for the header */
+            }
+
+            input[type="text"], button {
+                padding: 10px;
+                font-size: 16px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <a href="/homepage" class="logo">AVIATIONHUB</a>
+        <button class="menu-button" onmouseover="toggleMenu()" onmouseout="toggleMenu()">☰</button>
+        <div class="menu-content" id="menuContent" onmouseover="toggleMenu()" onmouseout="toggleMenu()">
+            <a href="/pilotinstruction">How To Become A Pilot</a>
+            <a href="/dgcaresource">DGCA Resources</a>
+            <a href="/flightsimulator">Flight Simulator</a>
+            <a href="/pilotcontact">Pilot Contacts</a>
+            <a href="/flyingschool">Flying Schools</a>
+            <a href="/about">About Us</a>
+            <a href="/contact">Contact Us</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </header>
+    <div class="title">AI Chatbot</div>
+
+    <div id="container">
+        <div class="chat" id="chat">
+            <!-- Messages will be added here -->
+        </div>
+        <div class="input-area">
+            <input type="text" id="question" placeholder="Ask an aviation question...">
+            <button onclick="askQuestion()">Send</button>
+        </div>
+       
+    </div>
+    <script>
+        function toggleMenu() {
+            var menuContent = document.getElementById('menuContent');
+            menuContent.style.display = menuContent.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function formatAIResponse(responseText) {
+            responseText = responseText.replace(/^(#+) (.+)/gm, (_, hashes, text) => `<h${hashes.length}>${text}</h${hashes.length}>`);
+            responseText = responseText.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+            responseText = responseText.replace(/\*(.+?)\*/g, '<em>$1</em>');
+            responseText = responseText.replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2">$1</a>');
+            responseText = responseText.replace(/^(\* .+)/gm, (match) => `<li>${match.slice(2)}</li>`);
+            if (responseText.includes('<li>')) {
+                responseText = `<ul>${responseText}</ul>`;
+            }
+            return responseText;
+        }
+
+        async function askQuestion() {
+            const question = document.getElementById('question').value;
+            document.getElementById('question').value = '';
+            const chatContainer = document.getElementById('chat');
+            const userMessage = document.createElement('div');
+            userMessage.className = 'chat-message user-message';
+            userMessage.innerText = question;
+            chatContainer.insertBefore(userMessage, chatContainer.firstChild);
+            try {
+                const response = await fetch('/ask', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ question })
+                });
+                if (!response.ok) throw new Error('Network response was not ok');
+                const data = await response.json();
+                const botMessage = document.createElement('div');
+                botMessage.className = 'chat-message bot-message';
+                botMessage.innerHTML = formatAIResponse(data.answer);
+                chatContainer.insertBefore(botMessage, chatContainer.firstChild);
+            } catch (error) {
+                console.error("Fetch error:", error);
+                const botMessage = document.createElement('div');
+                botMessage.className = 'chat-message bot-message';
+                botMessage.innerText = 'Error: Unable to connect. Please try again later.';
+                chatContainer.insertBefore(botMessage, chatContainer.firstChild);
+            }
+        }
+    </script>
+    <footer>
+        For any feedback or queries contact <a href="mailto:contactaviationhub@gmail.com">contactaviationhub@gmail.com</a>
+    </footer>
+</body>
+</html>

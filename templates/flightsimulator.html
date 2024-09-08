@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Simulator</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: white;
+            background-image: url('/static/pilotbg.webp'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 100px auto;
+            padding: 20px;
+            background-color: rgb(198, 137, 198);  /* Background color for content container */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: justify;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #ec4899;  /* Button background color */
+            color: #fff;  /* Button text color */
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 16px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .button:hover {
+            background-color: #ed67aa;  /* Hover effect for button */
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: none;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+            background-image: linear-gradient(to right, #FFDFD6, #E3A5C7, #B692C2, #694F8E);
+            -webkit-background-clip: text;
+            color: transparent;
+            z-index: 10;
+        }
+
+        .menu-button {
+            font-size: 30px;
+            padding: 10px 20px;
+            background-image: linear-gradient(to right, #FFDFD6, #E3A5C7, #B692C2, #694F8E);
+            -webkit-background-clip: text;
+            color: transparent;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            right: 30px;
+        }
+
+        .menu-content {
+            display: none;
+            position: absolute;
+            top: 80px;
+            right: 60px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            z-index: 1000;
+            background: linear-gradient(to right, #FFDFD6, #E3A5C7, #B692C2, #694F8E);
+        }
+
+        .menu-content a {
+            display: block;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .menu-content a:hover {
+            background-color: #E3A5C7;
+        }
+        .content p{
+            color: white;
+        }
+        
+        .menu-button:hover + .menu-content,
+.menu-content:hover {
+    display: block; /* Show the menu when hovering over the button or menu content */
+}
+
+        footer {
+            background: linear-gradient(to right, #FFDFD6, #E3A5C7, #B692C2, #694F8E);
+            color: #fff;
+            text-align: center;
+            padding: 10px 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        footer a {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 20px 15px;
+                width: 100%;
+            }
+
+            .header-content {
+                flex-direction: column;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+        .title {
+            font-size: 30px;
+            font-weight: bold;
+            color: black;
+            text-align: center;
+            width: 100%;
+            padding: 20px 0; /* Padding on top and bottom */
+             /* Background color to match the header */
+            position: relative; /* Ensuring it doesn't overlap */
+            top: 100px; /* Adjust based on your header's height */
+            z-index: 500; /* Lower than header but above other contents */
+            margin: 0 auto; /* Ensures it stays centered */
+            /* Optional: adds depth */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="/homepage" class="logo">AVIATIONHUB</a>
+        <button class="menu-button" onmouseover="toggleMenu()" onmouseout="toggleMenu()">☰</button>
+        <div class="menu-content" id="menuContent" onmouseover="toggleMenu()" onmouseout="toggleMenu()">
+            <a href="/pilotinstruction">How To Become A Pilot</a>
+            <a href="/dgcaresource">DGCA Resources</a>
+            <a href="/aichatbot">AI Chatbot</a>
+            <a href="/pilotcontact">Pilot Contacts</a>
+            <a href="/flyingschool">Flying Schools</a>
+            <a href="/about">About Us</a>
+            <a href="/contact">Contact Us</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </header>
+    <div class="title">Flight Simulator</div>
+    <div class="container">
+        <div class="content">
+            <h2>About Flight Simulators</h2>
+            <p>
+                Flight simulators are sophisticated systems designed to replicate the experience of flying an aircraft. They use advanced software and hardware to mimic the cockpit environment and flight dynamics, providing a realistic simulation of flight operations.
+            </p>
+            <p>
+                Historically, flight simulators have been used for pilot training, allowing pilots to practice maneuvers, procedures, and emergency scenarios in a safe and controlled setting. Over time, they have evolved to include highly detailed graphics, accurate physics engines, and interactive controls that enhance the learning experience.
+            </p>
+            <p>
+                Modern flight simulators are also used for research, aircraft design, and entertainment purposes, offering enthusiasts the opportunity to experience flying different aircraft types and exploring various virtual landscapes.
+            </p>
+            <h2>Using a Flight Simulator</h2>
+            <p>
+                Using a flight simulator involves familiarizing oneself with the cockpit controls, understanding the display panels, and learning how to operate the aircraft systems. Pilots and enthusiasts can adjust settings such as weather conditions, time of day, and flight routes to customize their simulation experience.
+            </p>
+            <p>
+                Whether you're refining your skills or exploring the world of flight, a flight simulator provides a dynamic and immersive way to engage with aviation.
+            </p>
+        </div>
+
+        <div class="button-container">
+            <a href="https://www.geo-fs.com/" class="button">Experience it Live</a>
+        </div>
+    </div>
+
+    <footer>
+        For any feedback or queries contact <a href="mailto:contactaviationhub@gmail.com">contactaviationhub@gmail.com</a>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            var menuContent = document.getElementById('menuContent');
+            if (menuContent.style.display === 'block') {
+                menuContent.style.display = 'none';
+            } else {
+                menuContent.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>

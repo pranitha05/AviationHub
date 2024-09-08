@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DGCA Resources</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: white;
+            background-image: url('/static/pilotbg.webp'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: #333;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: none;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+            background-image: linear-gradient(to right, #FFDFD6, #E3A5C7, #B692C2, #694F8E);
+            -webkit-background-clip: text;
+            color: transparent;
+            z-index: 10;
+        }
+
+        .title {
+            font-size: 30px;
+            font-weight: bold;
+            color: black; /* Dark color for good contrast */
+            text-align: center;
+            width: 100%;
+            padding: 20px 0; /* Padding on top and bottom */
+             /* Background color to match the header */
+            position: relative; /* Ensuring it doesn't overlap */
+            top: 100px; /* Adjust based on your header's height */
+            z-index: 500; /* Lower than header but above other contents */
+            margin: 0 auto; /* Ensures it stays centered */
+            /* Optional: adds depth */
+        }
+
+
+        .menu-button {
+            font-size: 30px;
+            padding: 10px 20px;
+            background-image: linear-gradient(to right, #FFDFD6, #E3A5C7, #B692C2, #694F8E);
+            -webkit-background-clip: text;
+            color: transparent;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            right: 30px;
+        }
+
+        .menu-content {
+            display: none;
+            position: absolute;
+            top: 80px;
+            right: 60px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            z-index: 1000;
+            background: linear-gradient(to right, #FFDFD6, #E3A5C7, #B692C2, #694F8E);
+        }
+
+        .menu-content a {
+            display: block;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .menu-content a:hover {
+            background-color: #E3A5C7;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 1200px;
+            margin: 100px auto; /* Margin adjusted for consistent spacing */
+        }
+        .menu-button:hover + .menu-content,
+.menu-content:hover {
+    display: block; /* Show the menu when hovering over the button or menu content */
+}
+
+        .subject-box {
+            background: linear-gradient(to right, #FFDFD6, #E3A5C7, #B692C2, #694F8E);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            padding: 20px;
+            transition: transform 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 350px;
+        }
+
+        .subject-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .subject-box img {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 20px;
+        }
+
+        .subject-box h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #af93bd;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 16px;
+            margin-top: 10px;
+            width: 80%;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .button:hover {
+            background-color: #d0b4bf;
+        }
+
+        footer {
+            background: linear-gradient(to right, #FFDFD6, #E3A5C7, #B692C2, #694F8E);
+            color: #fff;
+            text-align: center;
+            padding: 10px 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        footer a {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .container .row-center {
+                grid-column: span 1;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            header {
+                padding: 20px 15px;
+            }
+
+            .header-content {
+                flex-direction: column;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="/homepage" class="logo">AVIATIONHUB</a>
+        <button class="menu-button" onmouseover="toggleMenu()" onmouseout="toggleMenu()">☰</button>
+        <div class="menu-content" id="menuContent" onmouseover="toggleMenu()" onmouseout="toggleMenu()">
+            <a href="/pilotinstruction">How To Become A Pilot</a>
+            <a href="/flightsimulator">Flight Simulator</a>
+            <a href="/aichatbot">AI Chatbot</a>
+            <a href="/pilotcontact">Pilot Contacts</a>
+            <a href="/flyingschool">Flying Schools</a>
+            <a href="/about">About Us</a>
+            <a href="/contact">Contact Us</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </header>
+    <div class="title">DGCA Resources</div>
+    <div class="container">
+        <div class="subject-box">
+            <img src="https://img.icons8.com/ios/100/000000/partly-cloudy-day.png" alt="Meteorology Icon">
+            <h3>Meteorology</h3>
+            <a href="https://drive.google.com/drive/folders/1aFOONZK1QuqIgpWn-SDa4NBZSnPw3ofY" class="button">Get Materials</a>
+            <a href="https://eatpl.in/meteorology/" class="button">Test Your Knowledge</a>
+        </div>
+        <div class="subject-box">
+            <img src="https://img.icons8.com/ios-filled/100/000000/navigation.png" alt="Navigation Icon">
+            <h3>Navigation</h3>
+            <a href="https://drive.google.com/drive/folders/1PWtXs94Rw2MObForGeWlmnRsBnbWMWDP?usp=drive_link" class="button">Get Materials</a>
+            <a href="https://eatpl.in/navigation-2/" class="button">Test Your Knowledge</a>
+        </div>
+        <div class="subject-box">
+            <img src="https://img.icons8.com/ios-filled/100/000000/law.png" alt="Air Regulation Icon">
+            <h3>Air Regulation</h3>
+            <a href="https://drive.google.com/drive/folders/1cz8uXgqgLbi4g-hY0p6NoQhkRGpN1Hv2?usp=drive_link" class="button">Get Materials</a>
+            <a href="https://eatpl.in/regulations/" class="button">Test Your Knowledge</a>
+        </div>
+        <div class="subject-box">
+            <img src="https://img.icons8.com/ios-filled/100/000000/radio.png" alt="RTR Icon">
+            <h3>RTR</h3>
+            <a href="https://drive.google.com/drive/folders/1MEug02US519OcufCIa15Ybz-qHeTSq7I?usp=drive_link" class="button">Get Materials</a>
+            <a href="https://eatpl.in/instruments/" class="button">Test Your Knowledge</a>
+        </div>
+        <div class="subject-box">
+            <img src="https://img.icons8.com/ios-filled/100/000000/technical-support.png" alt="Tech General Icon">
+            <h3>Tech General</h3>
+            <a href="https://drive.google.com/drive/folders/1OCNiX7EfPpihJiBh86cAor2DMe_52Svv?usp=drive_link" class="button">Get Materials</a>
+            <a href="https://eatpl.in/technical-2/" class="button">Test Your Knowledge</a>
+        </div>
+    </div>
+    <footer>
+        For any feedback or queries contact <a href="mailto:contactaviationhub@gmail.com">contactaviationhub@gmail.com</a>
+    </footer>
+    <script>
+        function toggleMenu() {
+            var menuContent = document.getElementById('menuContent');
+            if (menuContent.style.display === 'block') {
+                menuContent.style.display = 'none';
+            } else {
+                menuContent.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>

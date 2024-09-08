@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AviationHub - Expert Pilots</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: white;
+            background-image: url('/static/pilotbg.webp'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: #333;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: none;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+            background-image: linear-gradient(to right, #FFDFD6, #E3A5C7, #B692C2, #694F8E);
+            -webkit-background-clip: text;
+            color: transparent;
+            z-index: 10;
+        }
+
+        .menu-button {
+            font-size: 30px;
+            padding: 10px 20px;
+            background-image: linear-gradient(to right, #FFDFD6, #E3A5C7, #B692C2, #694F8E);
+            -webkit-background-clip: text;
+            color: transparent;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            right: 30px;
+        }
+
+        .menu-content {
+            display: none;
+            position: absolute;
+            top: 80px;
+            right: 60px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            z-index: 1000;
+            background: linear-gradient(to right, #FFDFD6, #E3A5C7, #B692C2, #694F8E);
+        }
+
+        .menu-content a {
+            display: block;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .menu-content a:hover {
+            background-color: #E3A5C7;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 100px auto;
+            padding: 20px;
+            background-color: rgb(198, 137, 198); /* White background for content boxes */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+            border-radius: 10px; /* Rounded corners for modern look */
+        }
+
+        .pilot-box {
+            background-color:rgb(162, 96, 162);  ; /* Slightly off-white background for each box */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .pilot-box h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .pilot-box p {
+            margin-bottom: 10px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #c264af; /* Consistent blue for buttons */
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 16px;
+            width: 45%;
+        }
+
+        .button:hover {
+            background-color: #e247a9; 
+        }
+        footer {
+            background: linear-gradient(to right, #FFDFD6, #E3A5C7, #B692C2, #694F8E);
+            color: #fff;
+            text-align: center;
+            padding: 10px 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        footer a {
+            color: #fff;
+            text-decoration: underline;
+        }
+        .title {
+            font-size: 30px;
+            font-weight: bold;
+            color: black;
+            text-align: center;
+            width: 100%;
+            padding: 20px 0; /* Padding on top and bottom */
+             /* Background color to match the header */
+            position: relative; /* Ensuring it doesn't overlap */
+            top: 100px; /* Adjust based on your header's height */
+            z-index: 500; /* Lower than header but above other contents */
+            margin: 0 auto; /* Ensures it stays centered */
+            /* Optional: adds depth */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="/homepage" class="logo">AVIATIONHUB</a>
+        <button class="menu-button" onmouseover="toggleMenu()" onmouseout="toggleMenu()">☰</button>
+        <div class="menu-content" id="menuContent" onmouseover="toggleMenu()" onmouseout="toggleMenu()">
+            <a href="/pilotinstruction">How To Become A Pilot</a>
+            <a href="/dgcaresource">DGCA Resources</a>
+            <a href="/flightsimulator">Flight Simulator</a>
+            <a href="/aichatbot">AI Chatbot</a>
+            <a href="/flyingschool">Flying Schools</a>
+            <a href="/about">About Us</a>
+            <a href="/contact">Contact Us</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </header>
+    <div class="title">Connect With Pilots</div>
+    <div class="container">
+        <div class="pilot-box">
+            <h3>Captain Sanjith</h3>
+            <p>Pilot serving for Ornge, Canada. Been flying for 10 years.</p>
+            <div class="button-container">
+                <button class="button" onclick="window.location.href='https://www.instagram.com/pilotsierra/'">Contact on Instagram</button>
+            </div>
+        </div>
+
+        <div class="pilot-box">
+            <h3>Captain Chandrashekhar</h3>
+            <p>Captain in A320. Been a pilot since 2009.</p>
+            <div class="button-container">
+                <button class="button" onclick="window.location.href='https://www.instagram.com/aviator_vinay/'">Contact on Instagram</button>
+                <button class="button" onclick="window.location.href='https://www.linkedin.com/in/aviatorvinay/'">Contact on LinkedIn</button>
+            </div>
+        </div>
+
+        <div class="pilot-box">
+            <h3>Bradley Toro</h3>
+            <p>Hello My name is Bradley Toro I am a Pilot from Puerto Rico. I did my bachelors in aeronautical science and 2 minors in Aeronautical Studies and Airline Operations. I have been a Pilot for 4 years.
+            </p>
+            <div class="button-container">
+                <button class="button" onclick="window.location.href='https://www.instagram.com/pilot_toro/'">Contact on Instagram</button>
+            </div>
+        </div>
+        <div class="pilot-box">
+            <h3>Uditi Sharma</h3>
+            <p>Hello Aviator. Myself Uditi Sharma. A girl having a lifelong dream of becoming a Pilot as planes have always excited the amateur pilot inside me. 
+                My dream started right after my 12th and having been working on it since 2023.
+                </p>
+            <div class="button-container">
+                <button class="button" onclick="window.location.href='https://www.instagram.com/uniformsierra/'">Contact on Instagram</button>
+            </div>
+        </div>
+
+        <div class="pilot-box">
+            <h3>Captain Sai</h3>
+            <p>Pilot for 3 years & 7 years in aviation industry.</p>
+            <div class="button-container">
+                <button class="button" onclick="window.location.href='https://www.instagram.com/flywithsai_/'">Contact on Instagram</button>
+            </div>
+        </div>
+
+        <div class="pilot-box">
+            <h3>Pilot Khushi</h3>
+            <p>Hi, I am Khushi. I am a DGCA & FAA CPL holder. I have dreamed of becoming a pilot since childhood and I am now on my way to joining the airlines soon! 
+            </p>
+            <div class="button-container">
+                <button class="button" onclick="window.location.href='https://www.instagram.com/pilotkhushi_/'">Contact on Instagram</button>
+            </div>
+        </div>
+
+        <div class="pilot-box">
+            <h3>Pilot Anuj</h3>
+            <p>Completed flying training in South Africa, just started career as a pilot.</p>
+            <div class="button-container">
+                <button class="button" onclick="window.location.href='https://www.instagram.com/a_for_anuj_2321/'">Contact on Instagram</button>
+                <button class="button" onclick="window.location.href='https://www.linkedin.com/in/anuj-kumar-162a931a2/'">Contact on LinkedIn</button>
+            </div>
+        </div>
+
+        <div class="pilot-box">
+            <h3>Quentin</h3>
+            <p> My name is Quentin, I am 24 years old, and I have just been hired by an airline to work on the Boeing 737 after completing a modular training program.
+            </p>
+            <div class="button-container">
+                <button class="button" onclick="window.location.href='https://www.instagram.com/_flywithquentin/'">Contact on Instagram</button>
+            </div>
+        </div>
+
+        <div class="pilot-box">
+            <h3>Somenath</h3>
+            <p>Assistant Flight Instructor at CAE NFTI.</p>
+            <div class="button-container">
+                <button class="button" onclick="window.location.href='https://www.instagram.com/Somenath_19/'">Contact on Instagram</button>
+                <button class="button" onclick="window.location.href='https://www.linkedin.com/in/somnath-dutta-a86473270/'">Contact on LinkedIn</button>
+            </div>
+        </div>
+
+        <div class="pilot-box">
+            <h3>Rizwan Taj</h3>
+            <p>Pilot instructor for 9.5 years.</p>
+            <div class="button-container">
+                <button class="button" onclick="window.location.href='https://www.instagram.com/pilot_rizwantaj/'">Contact on Instagram</button>
+            </div>
+        </div>
+
+        <div class="pilot-box">
+            <h3>Pilot Gitika Sharma</h3>
+            <div class="button-container">
+                <button class="button" onclick="window.location.href='https://www.instagram.com/flyingyarns/'">Contact on Instagram</button>
+            </div>
+        </div>
+
+        <div class="pilot-box">
+            <h3>Ashar</h3>
+            <p>I am currently a student pilot working on my PPL and I have been flying just shy of 2 months and I absolutely love it. There are some ups and downs in aviation so buckle up, and I’ll see you in the sky!
+            </p>
+            <div class="button-container">
+                <button class="button" onclick="window.location.href='https://www.instagram.com/flywithashar/'">Contact on Instagram</button>
+            </div>
+        </div>
+
+        <div class="pilot-box">
+            <h3>Rahul Chaudhary</h3>
+            <div class="button-container">
+                <button class="button" onclick="window.location.href='https://www.instagram.com/theflyingrick/'">Contact on Instagram</button>
+            </div>
+        </div>
+
+        <div class="pilot-box">
+            <h3>Pilot Vishnu Sumanth</h3>
+            <div class="button-container">
+                <button class="button" onclick="window.location.href='https://www.instagram.com/vishnusumanth/'">Contact on Instagram</button>
+            </div>
+        </div>
+    </div>
+    <footer>
+        For any feedback or queries contact <a href="mailto:contactaviationhub@gmail.com">contactaviationhub@gmail.com</a>
+    </footer>
+    <script>
+        function toggleMenu() {
+            var menuContent = document.getElementById('menuContent');
+            if (menuContent.style.display === 'block') {
+                menuContent.style.display = 'none';
+            } else {
+                menuContent.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
